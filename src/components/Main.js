@@ -1,9 +1,9 @@
-function Main({ table, setTable, nextMove, setNextMove, winner, setWinner }) {
+function Main({ table, setTable, nextMove, setNextMove, winner, setWinner, toConnect }) {
     const checkWinner = async (row, column, move) => {
         // Horizontal
-        for(let i=-3;i<=0;i++) {
+        for(let i=-toConnect+1;i<=0;i++) {
             let allGood = true
-            for(let j=0;j<4;j++) {
+            for(let j=0;j<toConnect;j++) {
                 if(!(column+i+j===column) && table[row][column+i+j] !== move) {
                     allGood = false
                 }
@@ -14,9 +14,9 @@ function Main({ table, setTable, nextMove, setNextMove, winner, setWinner }) {
             }
         }
         //Vertical
-        if(row <= 2) {
+        if(row <= table.length-toConnect) {
             let allGood = true
-            for(let i=1;i<4;i++) {
+            for(let i=1;i<toConnect;i++) {
                 if(table[row+i][column] !== move) {
                     allGood = false
                 }
@@ -28,9 +28,9 @@ function Main({ table, setTable, nextMove, setNextMove, winner, setWinner }) {
         }
 
         //Diagonal
-        for(let i=-3;i<=0;i++) {
+        for(let i=-toConnect+1;i<=0;i++) {
             let allGood = true
-            for(let j=0;j<4;j++) {
+            for(let j=0;j<toConnect;j++) {
                 const r = row + i + j;
                 const c = column + i + j;
                 if(r < 0 || r >= table.length || c < 0 || c >= table[0].length || (!(r === row && c === column) && table[r][c] !== move)) {
@@ -43,9 +43,9 @@ function Main({ table, setTable, nextMove, setNextMove, winner, setWinner }) {
             }
         }
         
-        for(let i=-3;i<=0;i++) {
+        for(let i=-toConnect+1;i<=0;i++) {
             let allGood = true
-            for(let j=0;j<4;j++) {
+            for(let j=0;j<toConnect;j++) {
                 const r = row + i + j;
                 const c = column - i - j;
                 if(r < 0 || r >= table.length || c < 0 || c >= table[0].length || (!(r === row && c === column) && table[r][c] !== move)) {
@@ -77,13 +77,27 @@ function Main({ table, setTable, nextMove, setNextMove, winner, setWinner }) {
         }
     }
 
+    const maxNumber = Math.max(table.length, table[0].length)
+
+    const cellStyle = { 
+        height: 50/maxNumber + "vh",
+        width: 50/maxNumber + "vh",
+        maxHeight: 50/maxNumber + "vw",
+        maxWidth: 50/maxNumber + "vw",
+    }
+
+    const rowStyle = { 
+        height: 50/maxNumber + "vh",
+        maxHeight: 50/maxNumber + "vw",
+    }
+
     return (
         <div className='table'>
             {table.map((row, index) => 
-                <div key={index}>
-                    <span className='row-start' />
+                <div style={{lineHeight: 0}} key={index}>
+                    <span style={rowStyle} className='row-start' />
                     {row.map((cell, index) => 
-                        <span key={index} className={'cell '+(cell ? (cell === 1 ? 'blue' : 'red') : '')} onClick={() => onClick(index)}>
+                        <span style={cellStyle} key={index} className={'cell '+(cell ? (cell === 1 ? 'blue' : 'red') : '')} onClick={() => onClick(index)}>
                         </span>
                         )}
                 </div>
