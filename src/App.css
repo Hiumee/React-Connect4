@@ -1,0 +1,76 @@
+.app {
+  text-align: center;
+  margin: auto;
+  width: 80vh;
+  max-width: 80vw;
+  max-height: 80vh;
+  background-color: #52006A;
+  border-radius: 20px;
+  color: #FF7600;
+}
+
+.app h1 {
+  text-align: left;
+  margin-left: 12px;
+}
+
+.btn {
+  float: right;
+  margin-top: 12px;
+  margin-right: 12px;
+  color: black;
+  background-color: #FF7600;
+  border-color: #FF7600;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: 3vh;
+  cursor: pointer;
+}
+
+.row-start {
+  display: inline-block;
+  height: 8vh;
+  width: 0px;
+  border-color: #EBEBD3;
+  max-height: 10vw;
+  border-style: inset;
+  border-width: 2px;
+  border-left: none;
+  border-top: none;
+}
+
+.cell {
+  display: inline-block;
+  height: 8vh;
+  width: 8vh;
+  border-color: #EBEBD3;
+  max-height: 10vw;
+  max-width: 10vw;
+  border-style: inset;
+  border-width: 2px;
+  border-left: none;
+  border-top: none;
+}
+
+.blue {
+  background-color: #FFA900;
+}
+
+.red {
+  background-color: #CD113B;
+}
+
+.table {
+  padding-bottom: 20px;
+}
+
+.winner-text {
+  display: inline-block;
+  font-size: 5vh;
+  color: black;
+  width: 90%;
+  height: 7vh;
+  border-radius: 10px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
